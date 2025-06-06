@@ -45,11 +45,9 @@ class SetupBenchmarkData extends Command
             $tenant->domains()->create([
                 'domain' => "tenant{$index}.test",
             ]);
-
-            tenancy()->initialize($tenant);
         }
 
         $this->call('migrate', ['--force' => true]);
-        $this->call('db:seed', ['--class' => 'TenantSeeder', '--force' => true]);
+        $this->call('db:seed', ['--class' => 'DatabaseSeeder', '--force' => true]);
     }
 }

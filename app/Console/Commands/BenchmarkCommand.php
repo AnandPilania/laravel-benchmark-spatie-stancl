@@ -6,9 +6,9 @@ use Illuminate\Console\Command;
 use App\Models\Tenant;
 use App\Models\Product;
 
-class SpatieBenchmark extends Command
+class BenchmarkCommand extends Command
 {
-    protected $signature = 'benchmark:spatie {iterations=100}';
+    protected $signature = 'benchmark {iterations=100}';
     protected $description = 'Benchmark Spatie multitenancy performance';
 
     public function handle()
