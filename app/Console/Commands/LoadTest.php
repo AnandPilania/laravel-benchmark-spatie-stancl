@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use App\Models\Tenant;
+use App\Models\Product;
 
 class LoadTest extends Command
 {

@@ -64,7 +64,7 @@ return [
     /*
      * The connection name to reach the landlord database.
      */
-    'landlord_database_connection_name' => 'landlord',
+    'landlord_database_connection_name' => 'central',
 
     /*
      * This key will be used to associate the current tenant in the context

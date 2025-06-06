@@ -10,8 +10,8 @@ class AnalyzeBenchmarks extends Command
 
     public function handle()
     {
-        $spatieFiles = glob(storage_path('app/benchmark_spatie_*.json'));
-        $stanclFiles = glob(storage_path('app/benchmark_stancl_*.json'));
+        $spatieFiles = glob(base_path('results/benchmark_spatie_*.json'));
+        $stanclFiles = glob(base_path('results/benchmark_stancl_*.json'));
 
         $spatieData = $this->loadBenchmarkData($spatieFiles);
         $stanclData = $this->loadBenchmarkData($stanclFiles);
@@ -109,7 +109,7 @@ class AnalyzeBenchmarks extends Command
     private function generateDetailedReport($comparison)
     {
         $reportContent = $this->buildMarkdownReport($comparison);
-        $filename = storage_path('app/benchmark_report_' . date('Y-m-d_H-i-s') . '.md');
+        $filename = base_path('results/benchmark_report_' . date('Y-m-d_H-i-s') . '.md');
         file_put_contents($filename, $reportContent);
 
         $this->info("Detailed report saved to: {$filename}");

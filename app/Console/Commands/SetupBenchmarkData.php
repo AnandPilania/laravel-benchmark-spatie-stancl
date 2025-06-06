@@ -24,11 +24,11 @@ class SetupBenchmarkData extends Command
 
     private function createTenant($package, $index)
     {
-        $dbName = "tenant_{$package}_{$index}";
-
-        DB::statement("CREATE DATABASE IF NOT EXISTS {$dbName}");
-
         if ($package === 'spatie') {
+            $dbName = "{$package}_tenant_{$index}";
+
+            DB::statement("CREATE DATABASE IF NOT EXISTS {$dbName}");
+
             $tenant = Tenant::create([
                 'name' => "Tenant {$index}",
                 'domain' => "tenant{$index}.test",
@@ -36,6 +36,9 @@ class SetupBenchmarkData extends Command
             ]);
 
             $tenant->makeCurrent();
+
+            $this->call('tenants:artisan', ['artisanCommand' => 'migrate --database=tenant', '--tenant' => $tenant->id]);
+            $this->call('tenants:artisan', ['artisanCommand' => 'db:seed --database=tenant --class=Database\Seeders\DatabaseSeeder', '--tenant' => $tenant->id]);
         } else {
             $tenant = Tenant::create([
                 'id' => "tenant-{$index}",
@@ -46,8 +49,5 @@ class SetupBenchmarkData extends Command
                 'domain' => "tenant{$index}.test",
             ]);
         }
-
-        $this->call('migrate', ['--force' => true]);
-        $this->call('db:seed', ['--class' => 'DatabaseSeeder', '--force' => true]);
     }
 }

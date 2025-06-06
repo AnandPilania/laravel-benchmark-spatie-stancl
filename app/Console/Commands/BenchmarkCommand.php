@@ -62,7 +62,7 @@ class BenchmarkCommand extends Command
 
         for ($i = 0; $i < $iterations; $i++) {
             $start = microtime(true);
-            Product::with(['category'])->take(50)->get();
+            Product::take(50)->get();
             $end = microtime(true);
             $times[] = ($end - $start) * 1000;
         }
@@ -141,7 +141,7 @@ class BenchmarkCommand extends Command
 
     private function saveResults($package, $results)
     {
-        $filename = storage_path("app/benchmark_{$package}_" . date('Y-m-d_H-i-s') . '.json');
+        $filename = base_path("results/benchmark_{$package}_" . date('Y-m-d_H-i-s') . '.json');
         file_put_contents($filename, json_encode($results, JSON_PRETTY_PRINT));
         $this->info("Results saved to: {$filename}");
     }

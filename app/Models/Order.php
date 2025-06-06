@@ -4,11 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Multitenancy\Models\Concerns\UsesTenantConnection;
 
 class Order extends Model
 {
     /** @use HasFactory<\Database\Factories\OrderFactory> */
-    use HasFactory;
+    use HasFactory, UsesTenantConnection;
 
     protected $fillable = [
         'customer_name',

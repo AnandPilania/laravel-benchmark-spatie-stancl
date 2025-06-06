@@ -16,9 +16,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        Product::factory(1000)->create();
+        Product::factory(100)->create();
 
-        Order::factory(500)->create()->each(function ($order) {
+        Order::factory(50)->create()->each(function ($order) {
             OrderItem::factory(rand(1, 5))->create([
                 'order_id' => $order->id,
                 'product_id' => Product::inRandomOrder()->first()->id,

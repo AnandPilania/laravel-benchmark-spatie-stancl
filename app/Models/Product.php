@@ -4,17 +4,17 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Multitenancy\Models\Concerns\UsesTenantConnection;
 
 class Product extends Model
 {
     /** @use HasFactory<\Database\Factories\ProductFactory> */
-    use HasFactory;
+    use HasFactory, UsesTenantConnection;
 
     protected $fillable = [
         'name',
         'description',
         'price',
-        'category_id',
         'sku',
         'stock_quantity',
     ];

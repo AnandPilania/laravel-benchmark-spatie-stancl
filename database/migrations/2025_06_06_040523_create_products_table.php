@@ -17,7 +17,7 @@ return new class extends Migration
             $table->text('description');
             $table->decimal('price', 8, 2);
             $table->string('sku');
-            $table->integet('stock_quantity');
+            $table->integer('stock_quantity');
             $table->timestamps();
         });
     }
