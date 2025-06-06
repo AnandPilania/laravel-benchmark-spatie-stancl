@@ -5,11 +5,10 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use App\Models\Tenant;
 use App\Models\Product;
-use App\Models\Order;
 
-class StanclBenchmark extends Command
+class BenchmarkCommand extends Command
 {
-    protected $signature = 'benchmark:stancl {iterations=100}';
+    protected $signature = 'benchmark {iterations=100}';
     protected $description = 'Benchmark Stancl tenancy performance';
 
     public function handle()
@@ -142,7 +141,7 @@ class StanclBenchmark extends Command
 
     private function saveResults($package, $results)
     {
-        $filename = storage_path("app/benchmark_{$package}_" . date('Y-m-d_H-i-s') . '.json');
+        $filename = base_path("results/benchmark_{$package}_" . date('Y-m-d_H-i-s') . '.json');
         file_put_contents($filename, json_encode($results, JSON_PRETTY_PRINT));
         $this->info("Results saved to: {$filename}");
     }

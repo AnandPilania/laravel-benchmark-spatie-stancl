@@ -11,7 +11,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        $this->app->register(\Stancl\Tenancy\TenancyServiceProvider::class);
+
+        $loader = \Illuminate\Foundation\AliasLoader::getInstance();
+        $loader->alias('Tenancy', \Stancl\Tenancy\Facades\Tenancy::class);
+        $loader->alias('GlobalCache', \Stancl\Tenancy\Facades\GlobalCache::class);
     }
 
     /**
