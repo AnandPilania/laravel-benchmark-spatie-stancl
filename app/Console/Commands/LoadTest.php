@@ -24,7 +24,7 @@ class LoadTest extends Command
             'errors' => [],
         ];
 
-        $tenants = Tenant::take(5)->get();
+        $tenants = Tenant::take(10)->get();
 
         while (time() < $endTime) {
             foreach ($tenants as $tenant) {
