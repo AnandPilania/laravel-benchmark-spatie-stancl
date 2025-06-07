@@ -30,7 +30,7 @@ class ResourceMonitor extends Command
                     tenancy()->initialize($tenant);
                 }
 
-                Product::with(['category', 'orders'])->take(100)->get();
+                Product::with(['orders'])->take(100)->get();
                 Order::with(['items.product'])->take(50)->get();
             }
 
