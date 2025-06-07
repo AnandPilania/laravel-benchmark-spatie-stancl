@@ -94,7 +94,10 @@ class TenancyServiceProvider extends ServiceProvider
 
     public function register()
     {
-        //
+        \Stancl\Tenancy\DatabaseConfig::$databaseNameGenerator = function (\Illuminate\Database\Eloquent\Model $tenant) {
+            dd($tenant->getTenantKey());
+            return $tenant->getTenantKey();
+        };
     }
 
     public function boot()
