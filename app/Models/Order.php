@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Spatie\Multitenancy\Models\Concerns\UsesTenantConnection;
 
 class Order extends Model
@@ -22,5 +23,12 @@ class Order extends Model
     public function items()
     {
         return $this->hasMany(OrderItem::class);
+    }
+
+    public function products(): BelongsToMany
+    {
+        return $this->belongsToMany(Product::class, 'order_items')
+            ->withPivot('quantity', 'price')
+            ->withTimestamps();
     }
 }
