@@ -9,7 +9,7 @@ use App\Models\Product;
 
 class ConnectionPoolBenchmark extends Command
 {
-    protected $signature = 'benchmark:connections {package} {max-connections=100}';
+    protected $signature = 'benchmark:connections {package} {max-connections=300}';
 
     public function handle()
     {
