@@ -21,7 +21,7 @@ class ResourceMonitor extends Command
         $endTime = time() + $duration;
 
         $resourceData = [];
-        $tenants = Tenant::take(5)->get();
+        $tenants = Tenant::take(10)->get();
 
         while (time() < $endTime) {
             $startStats = $this->getSystemStats();

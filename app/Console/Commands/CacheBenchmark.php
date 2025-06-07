@@ -15,7 +15,7 @@ class CacheBenchmark extends Command
         $package = $this->argument('package');
         $iterations = (int) $this->argument('iterations');
 
-        $tenants = Tenant::take(5)->get();
+        $tenants = Tenant::take(10)->get();
         $results = [];
 
         foreach ($tenants as $tenant) {
