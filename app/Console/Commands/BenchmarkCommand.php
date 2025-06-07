@@ -8,7 +8,7 @@ use App\Models\Product;
 
 class BenchmarkCommand extends Command
 {
-    protected $signature = 'benchmark {iterations=100}';
+    protected $signature = 'benchmark {iterations=300}';
     protected $description = 'Benchmark Stancl tenancy performance';
 
     public function handle()
