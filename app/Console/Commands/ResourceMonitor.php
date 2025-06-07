@@ -3,9 +3,12 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\DB;
 use App\Models\Tenant;
 use App\Models\Product;
 use App\Models\Order;
+use function memory_get_peak_usage;
+use function memory_get_usage;
 
 class ResourceMonitor extends Command
 {
@@ -39,7 +42,7 @@ class ResourceMonitor extends Command
             $resourceData[] = [
                 'timestamp' => time(),
                 'memory_used' => $endStats['memory'] - $startStats['memory'],
-                'cpu_load' => sys_getloadavg()[0],
+                'cpu_load' => $this->safe_sys_getloadavg()[0],
                 'database_connections' => $this->getDatabaseConnections(),
             ];
 
@@ -72,5 +75,14 @@ class ResourceMonitor extends Command
         $filename = base_path("results/resource_monitor_{$package}_" . date('Y-m-d_H-i-s') . '.json');
         file_put_contents($filename, json_encode($data, JSON_PRETTY_PRINT));
         $this->info("Resource data saved to: {$filename}");
+    }
+
+    private function safe_sys_getloadavg()
+    {
+        if (function_exists('sys_getloadavg')) {
+            return sys_getloadavg();
+        }
+
+        return [0, 0, 0];
     }
 }
