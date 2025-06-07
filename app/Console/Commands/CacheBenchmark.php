@@ -8,7 +8,7 @@ use App\Models\Tenant;
 
 class CacheBenchmark extends Command
 {
-    protected $signature = 'benchmark:cache {package} {iterations=1000}';
+    protected $signature = 'benchmark:cache {package} {iterations=300}';
 
     public function handle()
     {
