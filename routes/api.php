@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
+use App\Models\Product;
+use App\Models\Order;
 
 Route::middleware(['api'])->group(function () {
     Route::get('/products', function () {
