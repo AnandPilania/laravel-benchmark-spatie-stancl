@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use App\Models\Tenant;
+use App\Models\Product;
 
 class LoadTest extends Command
 {
@@ -23,7 +24,7 @@ class LoadTest extends Command
             'errors' => [],
         ];
 
-        $tenants = Tenant::take(5)->get();
+        $tenants = Tenant::take(10)->get();
 
         while (time() < $endTime) {
             foreach ($tenants as $tenant) {
